@@ -27,11 +27,11 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-// var MONGODB_URI = process.env.MONGODB_URI || ("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-// mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
 
 // Routes
 
@@ -43,7 +43,7 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h3 within an article tag, and do the following:
-    $("playableTile__description").each(function(i, element) {
+    $("badgeList_item").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
