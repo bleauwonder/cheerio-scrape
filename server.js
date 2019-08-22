@@ -23,8 +23,17 @@ app.use(logger("dev"));
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Handlebars
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 // Make public a static folder
 app.use(express.static("public"));
+
+require("./htmlRoutes")(app);
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
@@ -35,15 +44,15 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// A GET route
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
-  axios.get("https://soundcloud.com/").then(function(response) {
+  axios.get("https://www.nationalenquirer.com/crime-investigation/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h3 within an article tag, and do the following:
-    $("badgeList_item").each(function(i, element) {
+    $("post-detail promo-title").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
@@ -107,9 +116,7 @@ app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
   db.Comment.create(req.body)
     .then(function(dbNote) {
-      // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
-      // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-      // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbComment._id }, { new: true });
     })
     .then(function(dbArticle) {
