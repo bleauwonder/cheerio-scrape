@@ -4,7 +4,6 @@ body {
 
 h1, h2 {
   text-align: center;
-  background: rgb(248, 250, 248);
   color: rgb(97, 2, 23);
   margin: 10px 100px;
 }
@@ -13,7 +12,6 @@ li {
     text-align: center;
     padding: 5px;
     margin: 10px 100px 10px 60px;
-    background: rgb(241, 237, 193);
     font-size: 15px;
     list-style-type: none;
   }
@@ -25,23 +23,12 @@ li {
   .create-form {
     padding: 10px 5px;
     margin: 10px 100px;
-    background: rgb(245, 245, 243);
     font-size: 15px;
     text-align: center;
   }
   
   .form-group {
     margin-bottom: 5px;
-  }
-
-  .complete-task {
-    background: rgb(105, 235, 105);
-    font-size: 12px;
-  }
-
-  .delete-task {
-    background: rgb(245, 171, 129);
-    font-size: 12px;
   }
 
   .button {
@@ -60,7 +47,7 @@ li {
     overflow: hidden;
     padding: 10px 20px;
     position: relative;
-    width: 125px;
+    width: 100px;
   }
   .button--white {
     color: white;

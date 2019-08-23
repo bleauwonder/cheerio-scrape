@@ -52,23 +52,34 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h3 within an article tag, and do the following:
-    $("post-detail promo-title").each(function(i, element) {
+    $("article").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
         .children("a")
-        .text();
+        .children(".post-detail")
+        .children(".promo-title")
+        .text().trim();
+      result.summary = $(this)
+        .children("a")
+        .children("div")
+        .children(".post-excerpt")
+        .children("p")
+        .text().trim();
       result.link = $(this)
         .children("a")
         .attr("href");
+
+      console.log(result);
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
+          // res.render("index", dbArticle);
         })
         .catch(function(err) {
           // If an error occurred, log it
@@ -77,17 +88,23 @@ app.get("/scrape", function(req, res) {
     });
 
     // Send a message to the client
-    res.send("Scrape Complete");
+    // res.send("Scrape Complete");
+
   });
 });
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // Grab every document in the Articles collection
-  db.Article.find({})
+  db.Article.find({}).limit(5)
     .then(function(dbArticle) {
+      // console.log("logging" + dbArticle);
+      let allArticles = {
+        articles: dbArticle
+      };
       // If we were able to successfully find Articles, send them back to the client
-      res.json(dbArticle);
+      // res.json(dbArticle);
+      res.render("index", allArticles);
     })
     .catch(function(err) {
       // If an error occurred, send it to the client

@@ -1,15 +1,27 @@
-<h1>Cheerio, Lover of Trash! Let's scrape!</h1>
+<h1>Cheerio, Lover of Trash, let's scrape!</h1>
 
 <h2>Get the News that's fit to Sink</h2>
 
-<ul>
-  {{#each article}}
+<div>
+  {{#each articles}}
+    <div class="card" style="width: 100%">
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+          <p class="card-text">{{this.summary}}</p>
+        <a href={{this.link}} class="card-link">Link</a>
+      </div>
+    </div>
   {{/each}}
-</ul>
+</div>
 
+<br>
+<br>
 <h2>Add a Comment</h2>
 <form class="create-form">
-
+  <div class="form-group">
+    <label for="ta">Title</label>
+    <input type="text" id="ta" name="task">
+  </div>
   <div class="form-group">
     <label for="ta">Comment</label>
     <input type="text" id="ta" name="task">
@@ -19,6 +31,6 @@
     <div class="pattern">
       <div class="target inner bg2"></div>
       </div>
-      <div class="text">Add Comment</div>
+      <div class="text">Submit</div>
     </button>
 </form>
