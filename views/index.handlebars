@@ -45,6 +45,11 @@
               </div>
               <div class="text">Submit</div>
             </button>
+            	<button class="complete-task" data-id="{{id}}" data-newtask="{{completed}}">
+		            {{#if completed}}Yes{{else}}Not Yet{{/if}}
+	            </button>
+
+	<button class="delete-task" data-id="{{this.id}}">Delete</button>
         </form>
       </div>
       <div class="modal-footer">

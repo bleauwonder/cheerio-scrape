@@ -1,0 +1,9 @@
+<li>
+	{{note}}
+
+	<button class="write-note" data-id="{{id}}" data-newnote="{{completed}}">
+		{{#if completed}}{{else}}Not Yet{{/if}}
+	</button>
+
+	<button class="delete-note" data-id="{{this.id}}">Delete</button>
+</li>
