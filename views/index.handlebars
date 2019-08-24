@@ -1,4 +1,4 @@
-<h1>Cheerio, Lover of Trash, let's scrape!</h1>
+<h1>Cheerio, Lover of Trash...let's scrape!</h1>
 
 <h2>Get the News that's fit to Sink</h2>
 
@@ -6,31 +6,54 @@
   {{#each articles}}
     <div class="card" style="width: 100%">
       <div class="card-body">
+        <img class="card-img-top" src={{this.image}} alt="headline photo">
         <h5 class="card-title">{{this.title}}</h5>
           <p class="card-text">{{this.summary}}</p>
         <a href={{this.link}} class="card-link">Link</a>
       </div>
+          <button data-toggle="modal" data-target="#seeNote" class="button" type="submit">
+      <div class="pattern">
+        <div class="target inner bg2"></div>
+        </div>
+        <div class="text">Add Note</div>
+    </button>
+
+  <div class="modal fade" id="seeNote" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Note</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="create-form">
+            <div class="form-group">
+              <label for="ta">Title</label>
+              <input type="text" id="ta" name="task">
+            </div>
+            <div class="form-group">
+              <label for="ta">Note</label>
+              <input type="text" id="ta" name="task">
+            </div>
+  
+          <button class="button" type="submit">
+            <div class="pattern">
+              <div class="target inner bg2"></div>
+              </div>
+              <div class="text">Submit</div>
+            </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   {{/each}}
-</div>
+  </div>
 
-<br>
-<br>
-<h2>Add a Comment</h2>
-<form class="create-form">
-  <div class="form-group">
-    <label for="ta">Title</label>
-    <input type="text" id="ta" name="task">
-  </div>
-  <div class="form-group">
-    <label for="ta">Comment</label>
-    <input type="text" id="ta" name="task">
-  </div>
-  
-  <button class="button" type="submit">
-    <div class="pattern">
-      <div class="target inner bg2"></div>
-      </div>
-      <div class="text">Submit</div>
-    </button>
-</form>
