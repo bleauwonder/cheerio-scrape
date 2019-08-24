@@ -78,3 +78,15 @@ li {
     opacity: 0.7;
     transition: opacity 100ms;
   }
+
+  .flexCards {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .card {
+    width: 30%;
+    align-content: center;
+  }
