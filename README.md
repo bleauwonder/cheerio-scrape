@@ -11,6 +11,8 @@
 
 ![Homepage scrape](./public/assets/image/Cheerio-1.png)
 -------------------------------------------------------------
+![Homepage scrape](./public/assets/image/Cheerio-2.png)
+-------------------------------------------------------------
 ### Technologies Used
 #### * Mongoose
 #### * Handlebars
